@@ -1,0 +1,11 @@
+- name: First example playbook
+  hosts: all
+  tasks:
+  - name: print the hostname
+    debug:
+      msg: "They call me {{ inventory_hostname }}, but my hostname is {{ ansible_hostname }}"
+
+  - name: Print the gateway for each host when defined
+    debug:
+      msg: System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}
+

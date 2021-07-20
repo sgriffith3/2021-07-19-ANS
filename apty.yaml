@@ -1,0 +1,31 @@
+---
+- name: Challenge First Playbook    
+  hosts: planetexpress:!farnsworth  
+  tasks:  
+  - name: using apt to install figlet  
+    apt:                   
+      name: figlet      
+      state: present   
+  - name: using apt to install cowsay  
+    apt:                   
+      name: cowsay 
+      state: present   
+    become: yes         
+  - name: using apt to install bastet  
+    apt:                   
+      name: bastet
+      state: present   
+    become: yes         
+
+- name: Method 2 - Challenge First Playbook    
+  hosts: bender   
+  tasks:  
+  - name: using apt to uninstall critical packages  
+    apt:                   
+      name: 
+      - figlet
+      - cowsay
+      - bastet      
+      state: absent
+    become: yes         
+

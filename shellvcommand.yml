@@ -1,0 +1,20 @@
+- name: Shell Vs Command
+  hosts: indy
+  tasks:
+  - name: issue a command 
+    command:
+      cmd: echo $PWD > mypwd.txt
+    register: command_output
+
+  - name: debug command output
+    debug:
+      var: command_output 
+  - name: issue a shell command 
+    shell:
+      cmd: ls $PWD 
+    register: shell_command_output
+
+  - name: debug shell command output
+    debug:
+      var: shell_command_output 
+

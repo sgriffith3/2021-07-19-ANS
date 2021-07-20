@@ -1,0 +1,51 @@
+---
+- name: Very Variable
+  hosts: raiders
+  gather_facts: False
+  vars_files:
+    - fishvars.yaml
+  vars:
+    fishy: alpha
+    doggy: great dane
+    cats:
+    - name: snowball
+      age: 2
+      cute_factor: 8
+    - name: fluffy
+      age: 11
+      cute_factor: 3
+    - name: garfield
+      age: 40
+      cute_factor: 6
+      
+  tasks:
+  - name: debug doggy var
+    debug:
+      var: doggy
+
+  - name: debug doggy msg
+    debug:
+      msg: "my doggy is a {{ doggy }}"
+    vars:
+      doggy: pom-pom
+
+  - name: debug cat names
+    debug:
+      msg: "My cat {{ item.name }} is {{ item.age }} years old and is a {{ item.cute_factor }} / 10 cute!"
+    loop: "{{ cats }}"
+
+  - name: debug fish names
+    debug:
+      msg: "My fish is named {{ fishy }}"
+    vars:
+      fishy: Goldie
+
+  - name: larning loops
+    debug:
+      msg: "This is {{ item }}"
+    loop: "{{ my_things }}"
+    vars:
+      my_things:
+      - first thing
+      - second thing
+      - last thing
